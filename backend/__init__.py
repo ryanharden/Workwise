@@ -10,13 +10,15 @@ from .api.auth_routes import auth_routes
 from .seeds import seed_commands
 from .config import Config
 
-app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
+# Creating an app instance of the import Flask class to represent the application. "__name__" is the global variable for the main module of the application.
+app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
-
+# This callback is used to reload the user object from the user ID stored in the session. It should take the str ID of a user, and return the corresponding user object.
+# @login.user_loader modifies the load_user function so that Flask-Login knows to call this function to get the User object corresponding to the user ID stored in the session.
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
@@ -25,15 +27,20 @@ def load_user(id):
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
 
+# Tells the flask instance what configurations we want to use
 app.config.from_object(Config)
+
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+
+# Initializes SQLAlchemy with the flask app
 db.init_app(app)
+
+# Integrates Flask-Migrate with your Flask app and SQLAlchemy ORM, enabling it to handle database migrations.
 Migrate(app, db)
 
 # Application Security
 CORS(app)
-
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
@@ -48,7 +55,7 @@ def https_redirect():
             code = 301
             return redirect(url, code=code)
 
-
+# Injects a csrf_token in each response to the client in order to prevent csrf attacks
 @app.after_request
 def inject_csrf_token(response):
     response.set_cookie(
@@ -60,7 +67,7 @@ def inject_csrf_token(response):
         httponly=True)
     return response
 
-
+# Provides us with an output of all routes, their urls, methods, and doc strings you provide
 @app.route("/api/docs")
 def api_help():
     """
@@ -85,7 +92,7 @@ def react_root(path):
         return app.send_from_directory('public', 'favicon.ico')
     return app.send_static_file('index.html')
 
-
+# This setup ensures that if users enter or are redirected to a path that the backend does not recognize, the frontend application still loads, and the frontend routing logic can then decide what to display (e.g., a custom 404 page).
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
