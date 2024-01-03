@@ -11,6 +11,8 @@ class Workspace(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(200))
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
+    visibility = db.Column(db.String(20), nullable=False)
+    workspace_image_url = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
@@ -20,5 +22,7 @@ class Workspace(db.Model):
             'name': self.name,
             'description': self.description,
             'owner_id': self.owner_id,
+            'visibility': self.visibility,
+            'workspace_image_url': self.workspace_image_url,
             'updated_at': self.updated_at
         }
