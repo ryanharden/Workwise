@@ -1,19 +1,60 @@
 from backend.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
+from backend.models import Workspace
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_workspaces():
-    # demo = User(
-    #     username='Demo', email='demo@aa.io', password='password')
-    # ryan = User(
-    #     first_name='ryan', last_name='harden',username='ryan', email='ryan@aa.io', password='password')
-    # jason = User(
-    #     first_name='jason',last_name='allen',username='jason', email='jason@aa.io', password='password')
+    workspace1 = Workspace(
+    id=1,
+    name="Creative Hub",
+    description="A vibrant space for artists and designers to collaborate and innovate.",
+    owner_id=1,
+    visibility="public",
+    workspace_image_url=""
+    )
 
-    # db.session.add(demo)
-    # db.session.add(ryan)
-    # db.session.add(jason)
+    workspace2 = Workspace(
+        id=2,
+        name="Tech Innovators",
+        description="Focused on cutting-edge technology and software development projects.",
+        owner_id=2,
+        visibility="private",
+        workspace_image_url=""
+    )
+
+    workspace3 = Workspace(
+        id=3,
+        name="Eco Warriors",
+        description="Dedicated to environmental projects and sustainable practices.",
+        owner_id=3,
+        visibility="public",
+        workspace_image_url=""
+    )
+
+    workspace4 = Workspace(
+        id=4,
+        name="Finance Gurus",
+        description="A hub for finance professionals to discuss market trends and strategies.",
+        owner_id=4,
+        visibility="private",
+        workspace_image_url=""
+    )
+
+    workspace5 = Workspace(
+        id=5,
+        name="Health & Wellness",
+        description="Focused on healthcare, fitness, and overall well-being discussions.",
+        owner_id=5,
+        visibility="public",
+        workspace_image_url=""
+    )
+
+    db.session.add(workspace1)
+    db.session.add(workspace2)
+    db.session.add(workspace3)
+    db.session.add(workspace4)
+    db.session.add(workspace5)
     db.session.commit()
 
 
@@ -25,7 +66,7 @@ def seed_workspaces():
 # it will reset the primary keys for you as well.
 def undo_workspaces():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.workspaces RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM workspaces"))
 
