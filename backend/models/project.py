@@ -15,6 +15,9 @@ class Project(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
+    owner = db.relationship("User", back_populates="projects")
+    workspace = db.relationship("Workspace", back_populates="projects")
+
     def to_dict(self):
         return {
             'id': self.id,

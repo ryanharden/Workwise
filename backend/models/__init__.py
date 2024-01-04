@@ -1,5 +1,5 @@
 from .db import db
-from .role import Role
+# from .role import Role
 from .task import Task
 from .user_workspace import UserWorkspace
 from .user import User

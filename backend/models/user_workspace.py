@@ -10,7 +10,7 @@ class UserWorkspace(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     workspace_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("workspaces.id")), nullable=False)
     role = db.Column(db.String(20), nullable=False)
-    joined = db.Column(db.DateTime, default= datetime.datetime.utcnow())
+    joined = db.Column(db.DateTime, default= datetime.utcnow())
 
     def to_dict(self):
         return {

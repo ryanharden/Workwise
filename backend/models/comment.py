@@ -15,6 +15,10 @@ class Comment(db.Model):
     createdAt = db.Column(db.DateTime, default=datetime.utcnow())
     updatedAt = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
+    task = db.relationship("Task", back_populates="comment")
+    comment = db.relationship("Comment", back_populates="comment") #not sure about this one
+    author = db.relationship("User", back_populates="comments")
+
     def to_dict(self):
         return {
             'id': self.id,

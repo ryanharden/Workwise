@@ -17,6 +17,12 @@ class User(db.Model, UserMixin):
     image_url = db.Column(db.String(255))
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    workspaces = db.relationship("Workspace", secondary="user_workspaces", back_populates="users")
+    tasks = db.relationship("Task", secondary="user_tasks", back_populates="users")
+    projects = db.relationship("Project", back_populates="owner")
+    notifications = db.relationship("Notification", back_populates="user")
+    comments = db.relationship("Comment", back_populates="author")
+
     @property
     def password(self):
         return self.hashed_password

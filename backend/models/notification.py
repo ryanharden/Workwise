@@ -17,6 +17,8 @@ class Notification(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
+    user = db.relationship("User", back_populates="notifications")
+
     def to_dict(self):
         return {
             'id': self.id,

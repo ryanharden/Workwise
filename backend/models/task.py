@@ -18,6 +18,8 @@ class Task(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
+    creator = db.relationship("User", secondary="user_tasks", back_populates="tasks")
+
     def to_dict(self):
         return {
             'id': self.id,
