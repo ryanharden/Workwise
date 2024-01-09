@@ -8,7 +8,7 @@ def seed_comments():
     comment1 = Comment(
         id=1,
         task_id=1,
-        comment_id=1,  # Self-referencing for top-level comment
+        parent_comment_id=1,  # Self-referencing for top-level comment
         author_id=2,  # User commenting on the task
         body="I've started sketching some initial concepts for the logo. Feedback is welcome!"
     )
@@ -17,7 +17,7 @@ def seed_comments():
     comment2 = Comment(
         id=2,
         task_id=2,
-        comment_id=2,
+        parent_comment_id=2,
         author_id=1,
         body="Let's ensure the new design aligns with our exhibition themes. I'll post some layout ideas soon."
     )
@@ -26,7 +26,7 @@ def seed_comments():
     comment3 = Comment(
         id=3,
         task_id=3,
-        comment_id=3,
+        parent_comment_id=3,
         author_id=4,
         body="I've implemented the first set of features in the app. Check it out and let me know your thoughts."
     )
@@ -35,7 +35,7 @@ def seed_comments():
     comment4 = Comment(
         id=4,
         task_id=4,
-        comment_id=4,
+        parent_comment_id=4,
         author_id=3,
         body="The security protocols are updated. Please review the documentation and provide feedback."
     )
@@ -44,7 +44,7 @@ def seed_comments():
     comment5 = Comment(
         id=5,
         task_id=5,
-        comment_id=5,
+        parent_comment_id=5,
         author_id=6,
         body="I have some ideas to increase community engagement in our recycling program. Let's discuss."
     )
@@ -53,7 +53,7 @@ def seed_comments():
     comment6 = Comment(
         id=6,
         task_id=6,
-        comment_id=6,
+        parent_comment_id=6,
         author_id=5,
         body="I've contacted a few experts in renewable energy to speak at our workshop."
     )
@@ -62,7 +62,7 @@ def seed_comments():
     comment7 = Comment(
         id=7,
         task_id=7,
-        comment_id=7,
+        parent_comment_id=7,
         author_id=8,
         body="The meeting agenda is set. I've emailed the topics we'll cover, including new investment areas."
     )
@@ -71,7 +71,7 @@ def seed_comments():
     comment8 = Comment(
         id=8,
         task_id=8,
-        comment_id=8,
+        parent_comment_id=8,
         author_id=7,
         body="The draft of the financial report is ready. I need inputs on the forecast section."
     )
@@ -80,7 +80,7 @@ def seed_comments():
     comment9 = Comment(
         id=9,
         task_id=9,
-        comment_id=9,
+        parent_comment_id=9,
         author_id=10,
         body="Can someone update on the status of the venue booking for the yoga workshop?"
     )
@@ -89,7 +89,7 @@ def seed_comments():
     comment10 = Comment(
         id=10,
         task_id=10,
-        comment_id=10,
+        parent_comment_id=10,
         author_id=9,
         body="I've added a new article on nutrition tips. It would be great if someone could review it."
     )
@@ -98,7 +98,7 @@ def seed_comments():
     comment11 = Comment(
         id=11,
         task_id=1,
-        comment_id=1,  # Related to the first comment on this task
+        parent_comment_id=1,  # Related to the first comment on this task
         author_id=3,
         body="I love the initial concepts! Maybe we can try integrating more vibrant colors?"
     )
@@ -107,7 +107,7 @@ def seed_comments():
     comment12 = Comment(
         id=12,
         task_id=3,
-        comment_id=3,  # Follow-up on the app development
+        parent_comment_id=3,  # Follow-up on the app development
         author_id=2,
         body="The app's interface is user-friendly, but we need to work on faster response times."
     )
@@ -116,7 +116,7 @@ def seed_comments():
     comment13 = Comment(
         id=13,
         task_id=7,
-        comment_id=7,  # Related to the meeting agenda
+        parent_comment_id=7,  # Related to the meeting agenda
         author_id=10,
         body="Are we also discussing the impact of recent market fluctuations on our investments?"
     )
@@ -125,7 +125,7 @@ def seed_comments():
     comment14 = Comment(
         id=14,
         task_id=5,
-        comment_id=5,  # Regarding the recycling program
+        parent_comment_id=5,  # Regarding the recycling program
         author_id=9,
         body="Perhaps we could partner with local schools to broaden the reach of our recycling program."
     )
@@ -134,7 +134,7 @@ def seed_comments():
     comment15 = Comment(
         id=15,
         task_id=10,
-        comment_id=10,  # Related to the health blog update
+        parent_comment_id=10,  # Related to the health blog update
         author_id=6,
         body="Great article on nutrition! I've added a few comments on recent dietary research trends."
     )

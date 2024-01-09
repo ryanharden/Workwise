@@ -16,7 +16,7 @@ class Workspace(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
-    owner = db.relationship("User", secondary="user_workspaces", back_populates="workspaces")
+    users = db.relationship("User", secondary="user_workspaces", back_populates="workspaces")
     projects = db.relationship("Project", back_populates="workspace")
 
     def to_dict(self):

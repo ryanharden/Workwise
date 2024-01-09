@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from backend.models.user_task import user_tasks
 
 
 class Task(db.Model):
@@ -18,7 +19,8 @@ class Task(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
 
-    creator = db.relationship("User", secondary="user_tasks", back_populates="tasks")
+    users = db.relationship("User", secondary=user_tasks, back_populates="tasks")
+    comments = db.relationship("Comment", back_populates="task")
 
     def to_dict(self):
         return {
