@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, session, request
+from sqlalchemy import or_
 from backend.models import User, db
 from backend.forms import LoginForm
 from backend.forms import SignUpForm
@@ -39,7 +40,8 @@ def login():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
+        user_input = form.data['user_input']
+        user = User.query.filter(or_(User.email == user_input, User.username == user_input)).first()
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -63,6 +65,8 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
+            first_name=form.data['first_name'],
+            last_name=form.data["last_name"],
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password']
