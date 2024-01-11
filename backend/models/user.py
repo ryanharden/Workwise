@@ -43,3 +43,8 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
+
+    # def user_workspaces(self):
+    #     return {
+    #         'workspaces': { workspace for workspace in self.workspaces }
+    #     }

@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from backend.models import db, Workspace, User
-from backend.forms import workspace_form
+from backend.forms import WorkspaceForm
 import datetime
 
 workspace_routes = Blueprint('workspaces', __name__)
@@ -38,8 +38,9 @@ def get_user_workspaces():
     if not user:
         return {"errors": "User not found"}, 404
 
-    workspaces = user.workspaces
-    return { workspace.id: workspace.to_dict() for workspace in workspaces }
+    user_workspaces = Workspace.query.filter(Workspace.owner_id==current_user.id).all()
+
+    return { workspace.id: workspace.to_dict() for workspace in user_workspaces }
 
 
 # GET Workspace by ID
@@ -62,14 +63,14 @@ def get_workspace_by_id(id):
 @workspace_routes.route("", methods=["POST"])
 @login_required
 def create_workspace():
-    form = workspace_form()
+    form = WorkspaceForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         workspace = Workspace(
             name = form.data['name'],
             description = form.data["description"],
             owner_id = current_user.id,
-            visibility = form.data['visbility'],
+            visibility = form.data['visibility'],
             created_at = datetime.datetime.utcnow()
         )
 
@@ -96,13 +97,11 @@ def edit_workspace(id):
     if not workspace:
         return {"errors":"Workspace not found"}, 404
 
-    form = workspace_form()
+    form = WorkspaceForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        workspace.name = form.data['name']
-        workspace.description = form.data["description"]
-        workspace.visibility = form.data['visbility']
+        form.populate_obj(workspace)
 
         db.session.add(workspace)
         db.session.commit()

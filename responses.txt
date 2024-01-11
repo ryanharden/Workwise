@@ -1,0 +1,38 @@
+Workspaces
+
+
+GET All Workspaces ~ /api/workspaces
+{ "workspaces": { "1": { "description": "A vibrant space for artists and designers to collaborate and innovate.", "id": 1, "name": "Creative Hub", "owner_id": 1, "updated_at": "Tue, 09 Jan 2024 20:01:21 GMT", "visibility": "public", "workspace_image_url": "" }, "2": { "description": "Focused on cutting-edge technology and software development projects.", "id": 2, "name": "Tech Innovators", "owner_id": 2, "updated_at": "Tue, 09 Jan 2024 20:01:21 GMT", "visibility": "private", "workspace_image_url": "" }, "3": { "description": "Dedicated to environmental projects and sustainable practices.", "id": 3, "name": "Eco Warriors", "owner_id": 3, "updated_at": "Tue, 09 Jan 2024 20:01:21 GMT", "visibility": "public", "workspace_image_url": "" }, "4": { "description": "A hub for finance professionals to discuss market trends and strategies.", "id": 4, "name": "Finance Gurus", "owner_id": 4, "updated_at": "Tue, 09 Jan 2024 20:01:21 GMT", "visibility": "private", "workspace_image_url": "" }, "5": { "description": "Focused on healthcare, fitness, and overall well-being discussions.", "id": 5, "name": "Health & Wellness", "owner_id": 5, "updated_at": "Tue, 09 Jan 2024 20:01:21 GMT", "visibility": "public", "workspace_image_url": "" } } }
+
+GET All User Workspaces ~ /api/workspaces/user
+{ "6": { "description": "A culinary exploration space for sharing recipes and cooking techniques from around the world.", "id": 6, "name": "Global Foodies", "owner_id": 11, "updated_at": "Thu, 11 Jan 2024 19:52:22 GMT", "visibility": "private", "workspace_image_url": null } }
+
+GET - Get a Workspace by ID ~ /api/workspaces/<int:id>
+{
+    "description": "A culinary exploration space for sharing recipes and cooking techniques from around the world.",
+    "id": 6,
+    "name": "Global Foodies",
+    "owner_id": 11,
+    "updated_at": "Thu, 11 Jan 2024 19:52:22 GMT",
+    "visibility": "private",
+    "workspace_image_url": null
+}
+
+POST - Create a Workspace ~ /api/workspaces
+{ "description": "A culinary exploration space for sharing recipes and cooking techniques from around the world.", "id": 6, "name": "Global Foodies", "owner_id": 11, "updated_at": "Thu, 11 Jan 2024 19:52:22 GMT", "visibility": "private", "workspace_image_url": null }
+
+PUT - Update a Workspace by ID ~ /api/workspaces/<int:id>
+{
+    "description": "A culinary exploration space for sharing recipes and cooking techniques from around the world.",
+    "id": 6,
+    "name": "Global Foodies",
+    "owner_id": 11,
+    "updated_at": "Thu, 11 Jan 2024 20:08:08 GMT",
+    "visibility": "public",
+    "workspace_image_url": null
+}
+
+DELETE - Delete a Workspace by ID ~ /api/workspaces/<int:id>
+{
+    "message": "Delete successful"
+}
