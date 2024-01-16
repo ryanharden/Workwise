@@ -36,3 +36,80 @@ DELETE - Delete a Workspace by ID ~ /api/workspaces/<int:id>
 {
     "message": "Delete successful"
 }
+
+
+Projects
+
+Get All Projects ~ /api/projects
+{
+    "1": {
+        "created_at": "Tue, 09 Jan 2024 20:01:22 GMT",
+        "description": "A comprehensive project to organize a large-scale art and design exhibition, including branding, marketing, and website development.",
+        "id": 1,
+        "name": "Art and Design Expo",
+        "owner_id": 1,
+        "updated_at": "Tue, 09 Jan 2024 20:01:22 GMT",
+        "workspace_id": 1
+    },
+    "2": {
+        "created_at": "Tue, 09 Jan 2024 20:01:22 GMT",
+        "description": "Development of a series of interconnected tech solutions for smart homes, including app development and cybersecurity enhancements.",
+        "id": 2,
+        "name": "Smart Home Ecosystem",
+        "owner_id": 2,
+        "updated_at": "Tue, 09 Jan 2024 20:01:22 GMT",
+        "workspace_id": 2
+    }
+}
+
+
+GET All User Projects ~ /api/projects/user
+{
+    "1": {
+        "created_at": "Tue, 09 Jan 2024 20:01:22 GMT",
+        "description": "A comprehensive project to organize a large-scale art and design exhibition, including branding, marketing, and website development.",
+        "id": 1,
+        "name": "Art and Design Expo",
+        "owner_id": 1,
+        "updated_at": "Tue, 09 Jan 2024 20:01:22 GMT",
+        "workspace_id": 1
+    }
+}
+
+GET a Project by ID ~ /api/projects/<int:id>
+{
+    "created_at": "Tue, 09 Jan 2024 20:01:22 GMT",
+    "description": "Development of a series of interconnected tech solutions for smart homes, including app development and cybersecurity enhancements.",
+    "id": 2,
+    "name": "Smart Home Ecosystem",
+    "owner_id": 2,
+    "updated_at": "Tue, 09 Jan 2024 20:01:22 GMT",
+    "workspace_id": 2
+}
+
+POST - Create a new project ~ /api/projects/
+{
+    "created_at": "Tue, 16 Jan 2024 20:27:29 GMT",
+    "description": "A really cool project.",
+    "id": 6,
+    "name": "new project",
+    "owner_id": 1,
+    "updated_at": "Tue, 16 Jan 2024 20:27:29 GMT",
+    "workspace_id": 2
+}
+
+PUT - Edit Project ~ /api/projects/<int:id>
+{
+    "created_at": "Tue, 16 Jan 2024 20:27:29 GMT",
+    "description": "A really cool project.",
+    "id": 6,
+    "name": "dope project",
+    "owner_id": 1,
+    "updated_at": "Tue, 16 Jan 2024 20:28:46 GMT",
+    "workspace_id": 2
+}
+
+DELETE a Project by ID ~ /api/projects/<int:id>
+{
+    "message": "Delete successful"
+}
